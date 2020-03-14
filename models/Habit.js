@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+
 const habitSchema = new Schema({
     name: {
         type: String,
@@ -24,7 +25,8 @@ const habitSchema = new Schema({
     user: {
         ref: "users",
         type: Schema.Types.ObjectId,
-    }
+    },
 });
+
 
 module.exports = mongoose.model("habbits", habitSchema);
