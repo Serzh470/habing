@@ -7,13 +7,22 @@ const habitRoutes = require("./routes/habit");
 const keys = require("./config/keys");
 const app = express();
 
-mongoose.connect(keys.mongoURI)
+// configure mongo database connection
+// for deprecated options
+const mongooseOpt = {
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+};
+
+mongoose.connect(keys.mongoURI, mongooseOpt)
     .then(() => console.log("MongoDB connected!"))
     .catch((e) => console.error(e));
 
+// configure authorization
 app.use(passport.initialize());
 require("./middleware/passport")(passport);
 
+// configure logging
 app.use(require("morgan")("dev"));
 
 // correct process requests
